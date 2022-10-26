@@ -10,11 +10,16 @@ namespace Homework_4
         Random r;
         Bitmap b, b1;
         Graphics g, g1;
-        Pen pen1 = new Pen(Color.Red, 2);
-        Pen pen2 = new Pen(Color.Blue, 2);
-        Pen pen3 = new Pen(Color.Green, 2);
+        Pen pen1 = new Pen(Color.IndianRed, 2);
+        Pen pen2 = new Pen(Color.LightBlue, 2);
+        Pen pen3 = new Pen(Color.Olive, 2);
+        Pen pen = new Pen(Color.Black, 2);
+        Brush brush1 = new SolidBrush(Color.IndianRed); 
+        Brush brush2 = new SolidBrush(Color.LightBlue);
+        Brush brush3 = new SolidBrush(Color.Olive); 
         List<Point> points; 
         List<Rectangle> rectangles;
+        Rectangle virtualWindow;
         double treshold = 0.5;
         int trialCount = 100;
         int repeat = 20;
@@ -44,9 +49,9 @@ namespace Homework_4
             g1 = Graphics.FromImage(b1);
             g1.Clear(Color.White);
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            Rectangle virtualWindow2 = new Rectangle(20, 20, b.Width - 40, b.Height - 40);
+            virtualWindow = new Rectangle(20, 20, b.Width - 40, b.Height - 40);
             g.Clear(Color.White);
-            g.DrawRectangle(Pens.Black, virtualWindow2);
+            g.DrawRectangle(Pens.Black, virtualWindow);
 
             parseInput();
 
@@ -87,8 +92,8 @@ namespace Homework_4
                     }
                     
                     // Graph 2: Relative frequency
-                    int xDevice2 = fromXRealToXVirtual(x, minX, maxX, virtualWindow2.Left, virtualWindow2.Width);
-                    int yDevice2 = fromYRealToYVirtual(((double)y / (double)x) * 100, minY, maxY, virtualWindow2.Top, virtualWindow2.Height);
+                    int xDevice2 = fromXRealToXVirtual(x, minX, maxX, virtualWindow.Left, virtualWindow.Width);
+                    int yDevice2 = fromYRealToYVirtual(((double)y / (double)x) * 100, minY, maxY, virtualWindow.Top, virtualWindow.Height);
                     points.Add(new Point(xDevice2, yDevice2));
                 }
                 // ISTOGRAM 3: points to plot the istrogram 3  
@@ -117,7 +122,8 @@ namespace Homework_4
                     kk++;
                 }
                 kk = 1;
-                g1.DrawRectangles(pen2, rectangles.ToArray());
+                g1.FillRectangles(brush2, rectangles.ToArray());
+                g1.DrawRectangles(pen, rectangles.ToArray());
                 pictureBox2.Image = b1;
             }
 
@@ -138,9 +144,9 @@ namespace Homework_4
             g1 = Graphics.FromImage(b1);
             g1.Clear(Color.White);
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            Rectangle virtualWindow3 = new Rectangle(20, 20, b.Width - 40, b.Height - 40);
+            virtualWindow = new Rectangle(20, 20, b.Width - 40, b.Height - 40);
             g.Clear(Color.White);
-            g.DrawRectangle(Pens.Black, virtualWindow3);
+            g.DrawRectangle(Pens.Black, virtualWindow);
 
             parseInput();
 
@@ -181,8 +187,8 @@ namespace Homework_4
                     }
 
                     // GRAPH 3: NORMALIZED frequency 
-                    int xDevice3 = fromXRealToXVirtual(x, minX, maxX, virtualWindow3.Left, virtualWindow3.Width);
-                    int yDevice3 = fromYRealToYVirtual((int)((double)y / Math.Sqrt(y)), minY, 100, virtualWindow3.Top, virtualWindow3.Height);
+                    int xDevice3 = fromXRealToXVirtual(x, minX, maxX, virtualWindow.Left, virtualWindow.Width);
+                    int yDevice3 = fromYRealToYVirtual((int)((double)y / Math.Sqrt(y)), minY, 100, virtualWindow.Top, virtualWindow.Height);
                     points.Add(new Point(xDevice3, yDevice3));
                 }
                 // ISTOGRAM 3: points to plot the istrogram 3  
@@ -211,7 +217,8 @@ namespace Homework_4
                     kk++;
                 }
                 kk = 1;
-                g1.DrawRectangles(pen3, rectangles.ToArray());
+                g1.FillRectangles(brush3, rectangles.ToArray());
+                g1.DrawRectangles(pen, rectangles.ToArray());
                 pictureBox2.Image = b1;
             }
         }
@@ -240,8 +247,8 @@ namespace Homework_4
 
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             g.Clear(Color.White); // colore in Background
-            Rectangle virtualWindow1 = new Rectangle(20, 20, b.Width - 40, b.Height - 40);
-            g.DrawRectangle(Pens.Black, virtualWindow1);
+            virtualWindow = new Rectangle(20, 20, b.Width - 40, b.Height - 40);
+            g.DrawRectangle(Pens.Black, virtualWindow);
 
             parseInput(); 
 
@@ -291,8 +298,8 @@ namespace Homework_4
                     }
 
                     // GRAPH 1: points to plot ABSOLUTE frequency 
-                    int xDevice1 = fromXRealToXVirtual(x, minX, maxX, virtualWindow1.Left, virtualWindow1.Width);
-                    int yDevice1 = fromYRealToYVirtual(y, minY, maxY, virtualWindow1.Top, virtualWindow1.Height);
+                    int xDevice1 = fromXRealToXVirtual(x, minX, maxX, virtualWindow.Left, virtualWindow.Width);
+                    int yDevice1 = fromYRealToYVirtual(y, minY, maxY, virtualWindow.Top, virtualWindow.Height);
                     points.Add(new Point(xDevice1, yDevice1));
                 }
 
@@ -321,8 +328,9 @@ namespace Homework_4
                     rectangles.Add(new Rectangle(0, yr, wr, sr));
                     kk++; 
                 }
-                kk = 1; 
-                g1.DrawRectangles(pen1, rectangles.ToArray());
+                kk = 1;
+                g1.FillRectangles(brush1, rectangles.ToArray());
+                g1.DrawRectangles(pen, rectangles.ToArray());
                 pictureBox2.Image = b1; 
             }
         }

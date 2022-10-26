@@ -59,7 +59,7 @@
             this.button1.Location = new System.Drawing.Point(463, 755);
             this.button1.Margin = new System.Windows.Forms.Padding(5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(642, 58);
+            this.button1.Size = new System.Drawing.Size(686, 58);
             this.button1.TabIndex = 1;
             this.button1.Text = "Absolute Frequency";
             this.button1.UseVisualStyleBackColor = true;
@@ -71,7 +71,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(30, 118);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1075, 611);
+            this.pictureBox1.Size = new System.Drawing.Size(1119, 611);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
@@ -87,11 +87,11 @@
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(1145, 755);
+            this.richTextBox2.Location = new System.Drawing.Point(1173, 755);
             this.richTextBox2.Margin = new System.Windows.Forms.Padding(5);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.ReadOnly = true;
-            this.richTextBox2.Size = new System.Drawing.Size(761, 194);
+            this.richTextBox2.Size = new System.Drawing.Size(733, 194);
             this.richTextBox2.TabIndex = 7;
             this.richTextBox2.Text = "";
             this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
@@ -150,10 +150,10 @@
             // pictureBox2
             // 
             this.pictureBox2.ImageLocation = "";
-            this.pictureBox2.Location = new System.Drawing.Point(1145, 118);
+            this.pictureBox2.Location = new System.Drawing.Point(1173, 118);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(761, 611);
+            this.pictureBox2.Size = new System.Drawing.Size(733, 611);
             this.pictureBox2.TabIndex = 15;
             this.pictureBox2.TabStop = false;
             // 
@@ -163,7 +163,7 @@
             this.button2.Location = new System.Drawing.Point(463, 823);
             this.button2.Margin = new System.Windows.Forms.Padding(5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(642, 58);
+            this.button2.Size = new System.Drawing.Size(686, 58);
             this.button2.TabIndex = 16;
             this.button2.Text = "Relative Frequency";
             this.button2.UseVisualStyleBackColor = true;
@@ -175,7 +175,7 @@
             this.button3.Location = new System.Drawing.Point(463, 891);
             this.button3.Margin = new System.Windows.Forms.Padding(5);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(642, 58);
+            this.button3.Size = new System.Drawing.Size(686, 58);
             this.button3.TabIndex = 17;
             this.button3.Text = "Normalized Frequency";
             this.button3.UseVisualStyleBackColor = true;
@@ -185,15 +185,15 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Bahnschrift Condensed", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(30, 937);
+            this.label6.Location = new System.Drawing.Point(30, 931);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 33);
+            this.label6.Size = new System.Drawing.Size(238, 33);
             this.label6.TabIndex = 19;
-            this.label6.Text = "Step: ";
+            this.label6.Text = "Range of the distribution:";
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(303, 931);
+            this.textBox4.Location = new System.Drawing.Point(303, 925);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(87, 39);
             this.textBox4.TabIndex = 20;
