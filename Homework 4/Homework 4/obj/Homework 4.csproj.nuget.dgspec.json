@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "\\\\Mac\\Home\\Desktop\\Homework 4\\Homework 4\\Homework 4.csproj": {}
+    "\\\\Mac\\Home\\Documents\\UNIVERSITA\\magistrale\\aa_22-23\\1_Semestre\\Statistics\\Homeworks\\Homework4\\Homework 4\\Homework 4\\Homework 4.csproj": {}
   },
   "projects": {
-    "\\\\Mac\\Home\\Desktop\\Homework 4\\Homework 4\\Homework 4.csproj": {
+    "\\\\Mac\\Home\\Documents\\UNIVERSITA\\magistrale\\aa_22-23\\1_Semestre\\Statistics\\Homeworks\\Homework4\\Homework 4\\Homework 4\\Homework 4.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "\\\\Mac\\Home\\Desktop\\Homework 4\\Homework 4\\Homework 4.csproj",
+        "projectUniqueName": "\\\\Mac\\Home\\Documents\\UNIVERSITA\\magistrale\\aa_22-23\\1_Semestre\\Statistics\\Homeworks\\Homework4\\Homework 4\\Homework 4\\Homework 4.csproj",
         "projectName": "Homework 4",
-        "projectPath": "\\\\Mac\\Home\\Desktop\\Homework 4\\Homework 4\\Homework 4.csproj",
+        "projectPath": "\\\\Mac\\Home\\Documents\\UNIVERSITA\\magistrale\\aa_22-23\\1_Semestre\\Statistics\\Homeworks\\Homework4\\Homework 4\\Homework 4\\Homework 4.csproj",
         "packagesPath": "C:\\Users\\gianlucagambilonghi\\.nuget\\packages\\",
-        "outputPath": "\\\\Mac\\Home\\Desktop\\Homework 4\\Homework 4\\obj\\",
+        "outputPath": "\\\\Mac\\Home\\Documents\\UNIVERSITA\\magistrale\\aa_22-23\\1_Semestre\\Statistics\\Homeworks\\Homework4\\Homework 4\\Homework 4\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gianlucagambilonghi\\AppData\\Roaming\\NuGet\\NuGet.Config",

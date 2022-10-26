@@ -39,6 +39,10 @@
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -72,11 +76,11 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(884, 566);
+            this.richTextBox1.Location = new System.Drawing.Point(884, 688);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(5);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(393, 305);
+            this.richTextBox1.Size = new System.Drawing.Size(393, 183);
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             // 
@@ -112,17 +116,17 @@
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(1305, 566);
+            this.richTextBox2.Location = new System.Drawing.Point(1305, 509);
             this.richTextBox2.Margin = new System.Windows.Forms.Padding(5);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.ReadOnly = true;
-            this.richTextBox2.Size = new System.Drawing.Size(393, 305);
+            this.richTextBox2.Size = new System.Drawing.Size(393, 362);
             this.richTextBox2.TabIndex = 7;
             this.richTextBox2.Text = "";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(1063, 511);
+            this.textBox1.Location = new System.Drawing.Point(1190, 511);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(87, 39);
             this.textBox1.TabIndex = 8;
@@ -133,15 +137,53 @@
             this.label2.Font = new System.Drawing.Font("Bahnschrift Condensed", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(884, 513);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(164, 33);
+            this.label2.Size = new System.Drawing.Size(216, 33);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Number of trials:";
+            this.label2.Text = "Number of coin tosses:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Bahnschrift Condensed", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(884, 568);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(247, 33);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Probability of success (%):";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(1190, 562);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(87, 39);
+            this.textBox2.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Bahnschrift Condensed", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(884, 616);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(230, 33);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Number of experiments:";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(1190, 616);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(87, 39);
+            this.textBox3.TabIndex = 13;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1725, 972);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.richTextBox2);
@@ -173,5 +215,9 @@
         private RichTextBox richTextBox2;
         private TextBox textBox1;
         private Label label2;
+        private Label label3;
+        private TextBox textBox2;
+        private Label label4;
+        private TextBox textBox3;
     }
 }

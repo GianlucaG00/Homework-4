@@ -8,12 +8,16 @@ namespace Homework_4
         Pen pen1 = new Pen(Color.Red, 2);
         Pen pen2 = new Pen(Color.Blue, 2);
         Pen pen3 = new Pen(Color.Green, 2);
+        double treshold = 0.5;
+        int trialCount = 100;
+        int repeat = 3; 
         public Form1()
         {
             InitializeComponent();
             r = new Random();
             timer1.Interval = 500;
         }
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -53,10 +57,9 @@ namespace Homework_4
             g3.DrawRectangle(Pens.Black, virtualWindow3);
 
 
-            int trialCount = 0; 
             try
             {
-                trialCount = Int32.Parse(textBox1.Text); // numero di extrazioni
+                trialCount = Int32.Parse(textBox1.Text); // numero di estrazioni
             }
             catch (Exception ec)
             {
@@ -68,7 +71,6 @@ namespace Homework_4
             double d; // double
             int y = 0; // number of successes (face up coin)
 
-            int[] extraction = new int[trialCount+1];
             List<Point> points1 = new List<Point>();
             List<Point> points2 = new List<Point>();
             List<Point> points3 = new List<Point>();
@@ -83,51 +85,75 @@ namespace Homework_4
             points3 = new List<Point>();
 
             y = 0;
-            for (int x = 1; x <= trialCount; x++)
+            try
             {
-                d = r.NextDouble();
-                if (d >= 0.5)
-                {
-                    y++;
-                    extraction[x] = 1;
-                }
-                else extraction[x] = 0; 
-
-                // graph 1: relative frequency 
-                int xDevice1 = fromXRealToXVirtual(x, minX, maxX, virtualWindow1.Left, virtualWindow1.Width);
-                int yDevice1 = fromYRealToYVirtual(y, minY, maxY, virtualWindow1.Top, virtualWindow1.Height);
-                points1.Add(new Point(xDevice1, yDevice1));
-
-                richTextBox1.AppendText("Trial n. " + x + ": " + extraction[x] + Environment.NewLine);
-
+                treshold = ((double) Int32.Parse(textBox2.Text)) / 100; // probabilità di successo
+            }
+            catch(Exception ex)
+            {
+                treshold = 0.5;
+                textBox2.Text = "50"; 
             }
             richTextBox2.AppendText(
-                "Results of " + trialCount.ToString() + " coin tosses" + Environment.NewLine +
-                "----------------------------" + Environment.NewLine + 
-                "Number of HEADS: " + y + Environment.NewLine +
-                "Number of TAILS: " + (trialCount - y));
-
-            g1.DrawLines(pen1, points1.ToArray());
-            pictureBox1.Image = b1;
-
-            int sum = 0; 
-            for (int j = 1; j<=trialCount; j++)
+                    "Results of " + trialCount.ToString() + " coin tosses" + Environment.NewLine +
+                    "Success: Head" + Environment.NewLine +
+                    "----------------------------" + Environment.NewLine
+            );
+            try
             {
-                sum += extraction[j];
-                // graph 2: absolute frequency 
-                int xDevice2 = fromXRealToXVirtual(j, minX, maxX, virtualWindow2.Left, virtualWindow2.Width);
-                int yDevice2 = fromYRealToYVirtual(sum, minY, y, virtualWindow2.Top, virtualWindow2.Height);
-                points2.Add(new Point(xDevice2, yDevice2));
-
-                // graph 2: normalized frequency 
-                int xDevice3 = fromXRealToXVirtual(j, minX, maxX, virtualWindow3.Left, virtualWindow3.Width); 
-                int yDevice3 = fromYRealToYVirtual((int) (sum/Math.Sqrt(y)), minY, y, virtualWindow3.Top, virtualWindow3.Height);
-                points3.Add(new Point(xDevice3, yDevice3));
+                repeat = Int32.Parse(textBox3.Text); // number of repetitions
             }
-            g2.DrawLines(pen2, points2.ToArray());
-            pictureBox2.Image = b2;
-            g3.DrawLines(pen3, points3.ToArray());
-            pictureBox3.Image = b3;
+            catch (Exception ex)
+            {
+                repeat = 3;
+                textBox3.Text = "3";
+            }
+
+            for (int j = 0; j < repeat; j++)
+            {
+                y = 0;
+                points1 = new List<Point>(); 
+                points2 = new List<Point>();
+                points3 = new List<Point>();
+
+                for (int x = 1; x <= trialCount; x++)
+                {
+                    d = r.NextDouble();
+                    if (d <= treshold)
+                    {
+                        y++;
+                    }
+
+                    // GRAPH 1: ABSOLUTE frequency 
+                    int xDevice1 = fromXRealToXVirtual(x, minX, maxX, virtualWindow1.Left, virtualWindow1.Width);
+                    int yDevice1 = fromYRealToYVirtual(y, minY, maxY, virtualWindow1.Top, virtualWindow1.Height);
+                    points1.Add(new Point(xDevice1, yDevice1));
+
+                    // GRAPH 2: RELATIVE frequency 
+                    int xDevice2 = fromXRealToXVirtual(x, minX, maxX, virtualWindow2.Left, virtualWindow2.Width);
+                    int yDevice2 = fromYRealToYVirtual(((double)y / (double)x) * 100, minY, 100, virtualWindow2.Top, virtualWindow2.Height);
+                    points2.Add(new Point(xDevice2, yDevice2));
+
+                    // GRAPH 3: NORMALIZED frequency 
+                    int xDevice3 = fromXRealToXVirtual(x, minX, maxX, virtualWindow3.Left, virtualWindow3.Width);
+                    int yDevice3 = fromYRealToYVirtual((int)((double)y / Math.Sqrt(y)), minY, 100, virtualWindow3.Top, virtualWindow3.Height);
+                    points3.Add(new Point(xDevice3, yDevice3));
+                }
+                // Summary of the extractions
+                richTextBox2.AppendText(
+                    "----------------------------" + Environment.NewLine +
+                    "Extraction n." + j.ToString() + Environment.NewLine +
+                    "Number of HEADS: " + y + Environment.NewLine +
+                    "Number of TAILS: " + (trialCount - y) + Environment.NewLine
+                    );
+
+                g1.DrawLines(pen1, points1.ToArray());
+                pictureBox1.Image = b1;
+                g2.DrawLines(pen2, points2.ToArray());
+                pictureBox2.Image = b2;
+                g3.DrawLines(pen3, points3.ToArray());
+                pictureBox3.Image = b3;
+            }
 
         }
 
