@@ -187,9 +187,9 @@
             this.label6.Font = new System.Drawing.Font("Bahnschrift Condensed", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label6.Location = new System.Drawing.Point(30, 931);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(238, 33);
+            this.label6.Size = new System.Drawing.Size(196, 33);
             this.label6.TabIndex = 19;
-            this.label6.Text = "Range of the distribution:";
+            this.label6.Text = "Number of intervals:";
             // 
             // textBox4
             // 

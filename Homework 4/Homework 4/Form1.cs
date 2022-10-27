@@ -2,6 +2,8 @@ using static System.Windows.Forms.DataFormats;
 using System.Security.Cryptography;
 using System.Diagnostics.Metrics;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
+using System.Security.Cryptography.Xml;
 
 namespace Homework_4
 {
@@ -24,6 +26,7 @@ namespace Homework_4
         int trialCount = 100;
         int repeat = 20;
         int step = 3;
+        double realStep; 
         public Form1()
         {
             InitializeComponent();
@@ -57,13 +60,15 @@ namespace Homework_4
 
             double d; // double
             int y = 0; // number of successes (face up coin)
+            double interval = ((double) 1) / ((double) step);
             int minX = 0;
             int maxX = trialCount;
             int minY = 0;
-            int maxY = trialCount;
+            int maxY = 1; 
+
             points = new List<Point>();
             y = 0;
-            int[] count = new int[b1.Height / step];
+            int[] count = new int[step];
             int i = 0;
             foreach (int c in count)
             {
@@ -93,13 +98,15 @@ namespace Homework_4
                     
                     // Graph 2: Relative frequency
                     int xDevice2 = fromXRealToXVirtual(x, minX, maxX, virtualWindow.Left, virtualWindow.Width);
-                    int yDevice2 = fromYRealToYVirtual(((double)y / (double)x) * 100, minY, maxY, virtualWindow.Top, virtualWindow.Height);
+                    int yDevice2 = fromYRealToYVirtual(((double)y / (double)x), minY, maxY, virtualWindow.Top, virtualWindow.Height);
                     points.Add(new Point(xDevice2, yDevice2));
                 }
                 // ISTOGRAM 3: points to plot the istrogram 3  
-                count[(int)((((double)y / (double)trialCount) * 100) / step)]++; // increments the current step 
+                double f = ((double) y) / ((double) trialCount);
+                count[(int)(f / interval)]++; 
+                
 
-                // Summary of the extractions
+                // Print the summary of the extractions
                 richTextBox2.AppendText(
                     "----------------------------" + Environment.NewLine +
                     "Extraction n." + j.ToString() + Environment.NewLine +
@@ -111,13 +118,13 @@ namespace Homework_4
                 g.DrawLines(pen2, points.ToArray());
                 pictureBox1.Image = b;
 
-                // Draw the Histogram 3
+                // Draw the Histogram 2
                 int kk = 1;
                 foreach (int k in count)
                 {
-                    int wr = fromXRealToXVirtual(k, minX, repeat, 0, b1.Width);
-                    int sr = fromXRealToXVirtual(step, minX, trialCount, 0, b1.Height);
-                    int yr = fromYRealToYVirtual(kk * step, minY, trialCount, 0, b1.Height);
+                    int wr = fromXRealToXVirtual(k, 0, repeat, 0, b1.Width);
+                    int sr = fromXRealToXVirtual(interval, 0, 1, 0, b1.Height);
+                    int yr = fromYRealToYVirtual(kk * interval, 0, 1, 0, b1.Height);
                     rectangles.Add(new Rectangle(0, yr, wr, sr));
                     kk++;
                 }
@@ -153,12 +160,15 @@ namespace Homework_4
             double d; // double
             int y = 0; // number of successes (face up coin)
             int minX = 0;
-            int maxX = trialCount;
+            double maxX = trialCount;
             int minY = 0;
-            int maxY = trialCount;
+            double maxY = ((double)trialCount / Math.Sqrt(trialCount));  
             points = new List<Point>();
             y = 0;
-            int[] count = new int[b1.Height / step];
+
+            double interval = ((double)trialCount/Math.Sqrt(trialCount) / step); 
+
+            int[] count = new int[step];
             int i = 0;
             foreach (int c in count)
             {
@@ -188,11 +198,12 @@ namespace Homework_4
 
                     // GRAPH 3: NORMALIZED frequency 
                     int xDevice3 = fromXRealToXVirtual(x, minX, maxX, virtualWindow.Left, virtualWindow.Width);
-                    int yDevice3 = fromYRealToYVirtual((int)((double)y / Math.Sqrt(y)), minY, 100, virtualWindow.Top, virtualWindow.Height);
+                    int yDevice3 = fromYRealToYVirtual(((double)y / Math.Sqrt(x)), minY, maxY, virtualWindow.Top, virtualWindow.Height);
                     points.Add(new Point(xDevice3, yDevice3));
                 }
                 // ISTOGRAM 3: points to plot the istrogram 3  
-                count[((int)((double)y / Math.Sqrt(y))) / step]++; // increments the current step 
+                double f = ((double)y) / Math.Sqrt(trialCount); 
+                count[(int) (f/interval)]++; // increments the current step 
 
                 // Summary of the extractions
                 richTextBox2.AppendText(
@@ -211,8 +222,8 @@ namespace Homework_4
                 foreach (int k in count)
                 {
                     int wr = fromXRealToXVirtual(k, minX, repeat, 0, b1.Width);
-                    int sr = fromXRealToXVirtual(step, minX, trialCount, 0, b1.Height);
-                    int yr = fromYRealToYVirtual(kk * step, minY, trialCount, 0, b1.Height);
+                    int sr = fromXRealToXVirtual(interval, minX, ((double)trialCount / (Math.Sqrt(trialCount))), 0, b1.Height);
+                    int yr = fromYRealToYVirtual(kk * interval, minY,((double) trialCount / Math.Sqrt(trialCount)), 0, b1.Height);
                     rectangles.Add(new Rectangle(0, yr, wr, sr));
                     kk++;
                 }
@@ -228,6 +239,7 @@ namespace Homework_4
            // richTextBox1.AppendText(values.ElementAt(random.Next() % values.Count()) + Environment.NewLine);
         }
 
+        
         // ABSOLUTE FREQUENCY
         private void button1_Click(object sender, EventArgs e)
         {
@@ -246,7 +258,7 @@ namespace Homework_4
             
 
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            g.Clear(Color.White); // colore in Background
+            g.Clear(Color.White); // Background color
             virtualWindow = new Rectangle(20, 20, b.Width - 40, b.Height - 40);
             g.DrawRectangle(Pens.Black, virtualWindow);
 
@@ -258,14 +270,15 @@ namespace Homework_4
             List<Point> points = new List<Point>();
             rectangles = new List<Rectangle>();
 
-            
-            int[] count = new int[b1.Height / step];
-            int i = 0; 
-            foreach(int c in count)
+            double interval = trialCount / step; 
+            int[] count = new int[step];
+            int i = 0;
+            while (i < step)
             {
                 count[i] = 0;
-                i++;
+                i++; 
             }
+
             i = 0; 
             int minX = 0;
             int maxX = trialCount;
@@ -304,7 +317,8 @@ namespace Homework_4
                 }
 
                 // ISTOGRAM 1: points to plot the istrogram 1   
-                count[y / step]++; // increments the current step 
+                count[(int) ((double)y / interval)]++; // increments the current step 
+                
 
                 // Summary of the extractions
                 richTextBox2.AppendText(
@@ -323,8 +337,8 @@ namespace Homework_4
                 foreach(int k in count)
                 {
                     int wr = fromXRealToXVirtual(k, 0, repeat, 0, b1.Width);
-                    int sr = fromXRealToXVirtual(step, minX, trialCount, 0, b1.Height);
-                    int yr = fromYRealToYVirtual(kk*step, minY, trialCount, 0, b1.Height); 
+                    int sr = fromXRealToXVirtual(interval, minX, maxX, 0, b1.Height);
+                    int yr = fromYRealToYVirtual(kk*interval, minY, maxY, 0, b1.Height); 
                     rectangles.Add(new Rectangle(0, yr, wr, sr));
                     kk++; 
                 }
@@ -336,12 +350,12 @@ namespace Homework_4
         }
         
 
-        private int fromXRealToXVirtual(double x, int minX, int maxX, int left, int w)
+        private int fromXRealToXVirtual(double x, int minX, double maxX, int left, int w)
         {
             return (int)(left + w * (x - minX) / (maxX - minX)); // left --> traslazione grafico
         }
 
-        private int fromYRealToYVirtual(double y, int minY, int maxY, int top, int h)
+        private int fromYRealToYVirtual(double y, int minY, double maxY, int top, int h)
         {
             return (int)(top + h - h * (y - minY) / (maxY - minY)); // top --> traslazione grafico 
         }
@@ -357,7 +371,7 @@ namespace Homework_4
             {
                 // in case of invalid input we force a valid integer
                 trialCount = 100; // numero di extrazioni
-                textBox1.Text = "100";
+                textBox1.Text = trialCount.ToString();
             }
             try
             {
@@ -366,7 +380,7 @@ namespace Homework_4
             catch (Exception ex)
             {
                 treshold = 0.5;
-                textBox2.Text = "50";
+                textBox2.Text = (treshold*100).ToString();
             }
             try
             {
@@ -375,7 +389,7 @@ namespace Homework_4
             catch (Exception ex)
             {
                 repeat = 20;
-                textBox3.Text = "20";
+                textBox3.Text = repeat.ToString();
             }
             try
             {
@@ -383,9 +397,16 @@ namespace Homework_4
             }
             catch (Exception ex)
             {
-                step = 3;
-                textBox4.Text = "3";
+                step = 20;
+                textBox4.Text = step.ToString();
             }
+            if(step > trialCount)
+            {
+                step = trialCount;
+                textBox1.Text = trialCount.ToString();
+                textBox4.Text = step.ToString();
+            }
+            return; 
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
